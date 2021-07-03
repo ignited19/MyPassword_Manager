@@ -6,6 +6,15 @@ import pyperclip
 print("Let's Rock!!")
 PasswordManagement = PM.PasswordManager()
 
+def startFindPassword():
+    website = Website_Entry.get()
+
+    password = PasswordManagement.findPassword(website)
+
+    if password != None:
+        Password_Entry.insert(0,password)
+
+
 def startPasswordSave():
     website = Website_Entry.get()
     newPassword = Password_Entry.get()
@@ -49,6 +58,8 @@ Button_GeneratePass = Button(text="Generate Password", width=14, command=startPa
 Button_GeneratePass.grid(row=3, column=2, columnspan=2)
 Button_Add = Button(text="Add", width=36, command=startPasswordSave)
 Button_Add.grid(row=4, column=1, columnspan=3)
+Search = Button(text="Search", width=15, command=startFindPassword)
+Search.grid(row=1, column=2, columnspan=3)
 
 
 session.mainloop()
